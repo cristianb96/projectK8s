@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://your-git-server/your-org/pedido-app.git'
+    repoURL: 'https://github.com/cristianb96/projectK8s.git'
     targetRevision: main
     path: charts/pedido-app
     helm:
