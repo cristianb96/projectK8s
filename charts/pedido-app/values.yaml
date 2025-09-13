@@ -1,26 +1,19 @@
-image:
-  repository: cristianb96/pedido-backend
+backend:
+  image: cristianb96/pedido-backend
   tag: "0.1.0"
   pullPolicy: IfNotPresent
-
-replicaCount: 2
-
-resources:
-  requests:
-    cpu: "100m"
-    memory: "128Mi"
-  limits:
-    cpu: "500m"
-    memory: "512Mi"
-
-service:
-  type: ClusterIP
-  port: 80
-  targetPort: 8000
-
-env:
-  FLASK_ENV: production
-  LOG_LEVEL: info
+  replicas: 2
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  port: 8000
+  env:
+    FLASK_ENV: production
+    LOG_LEVEL: info
 
 postgresql:
   enabled: true
@@ -28,7 +21,7 @@ postgresql:
     postgresql:
       postgresqlDatabase: pedido_db
   postgresqlUsername: pedido_user
-  postgresqlPassword: pedido_pass
+  postgresqlPassword: null
   primary:
     persistence:
       enabled: true
@@ -42,6 +35,10 @@ ingress:
     kubernetes.io/ingress.class: nginx
   path: /api/
 
+service:
+  type: ClusterIP
+  port: 80
+
 hpa:
   enabled: true
   minReplicas: 2
@@ -50,3 +47,5 @@ hpa:
 
 secrets:
   dbSecretName: pedido-db-credentials
+
+namespace: my-tech
