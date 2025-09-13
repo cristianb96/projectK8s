@@ -1,5 +1,5 @@
 backend:
-  image: cristianb96/pedido-backend
+  image: mateo9714/pedido-backend
   tag: "0.1.0"
   pullPolicy: IfNotPresent
   replicas: 2

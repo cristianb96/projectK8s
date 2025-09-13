@@ -4,7 +4,7 @@ pipeline {
     REGISTRY = 'registry.example.com'
     IMAGE_NAME = "${REGISTRY}/pedido-backend"
     GIT_CREDENTIALS_ID = 'git-creds'
-    GIT_REPO = 'git@your-git-server:your-org/pedido-app.git'
+    GIT_REPO = 'https://github.com/cristianb96/projectK8s.git'
     GIT_BRANCH = 'main'
   }
   stages {
