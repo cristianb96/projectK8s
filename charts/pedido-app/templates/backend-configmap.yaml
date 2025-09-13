@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pedido-app-config
+data:
+  DATABASE_URL: "postgresql://pedido_user@pedido-app-postgresql:5432/pedido_db"
+  LOG_LEVEL: "info"

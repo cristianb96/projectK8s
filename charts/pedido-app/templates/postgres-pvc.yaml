@@ -1,0 +1,11 @@
+{{- if .Values.postgresql.primary.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pedido-app-pgdata
+spec:
+  accessModes: {{ toJson .Values.postgresql.primary.persistence.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.postgresql.primary.persistence.size }}
+{{- end }}

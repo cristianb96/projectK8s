@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pedido-app-backend
+  labels:
+    app: pedido-app
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: pedido-app
+    component: backend
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.backend.port }}
+      protocol: TCP
+      name: http

@@ -1,0 +1,50 @@
+backend:
+  image: your-registry/pedido-backend
+  tag: "0.1.0"
+  replicas: 2
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+  port: 8000
+  env:
+    FLASK_ENV: production
+    LOG_LEVEL: info
+
+postgresql:
+  enabled: true
+  global:
+    postgresql:
+      postgresqlDatabase: pedido_db
+  postgresqlUsername: pedido_user
+  postgresqlPassword: null
+  primary:
+    persistence:
+      enabled: true
+      size: 8Gi
+      accessModes: ["ReadWriteOnce"]
+
+ingress:
+  enabled: true
+  hostname: pedido.example.com
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  path: /api/
+
+service:
+  type: ClusterIP
+  port: 80
+
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 60
+
+secrets:
+  dbSecretName: pedido-db-credentials
+
+namespace: my-tech
