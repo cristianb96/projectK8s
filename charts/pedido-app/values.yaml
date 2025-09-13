@@ -21,7 +21,7 @@ postgresql:
     postgresql:
       postgresqlDatabase: pedido_db
   postgresqlUsername: pedido_user
-  postgresqlPassword: null
+  postgresqlPassword: "pedido_pass"
   primary:
     persistence:
       enabled: true
